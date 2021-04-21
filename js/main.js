@@ -1,3 +1,4 @@
+// Global variable declarations
 const grid = document.querySelector(".grid");
 let squares = Array.from(document.querySelectorAll(".grid div"));
 const scoreDisplay = document.getElementById("score");
@@ -7,13 +8,13 @@ let nextRandom = 0;
 let timerId;
 let score = 0;
 const colors = ["green", "orange", "blue", "red", "purple"];
-
+// search function
 function search() {
   var levelField = document.getElementById("level");
   var s = levelField.selectedIndex;
   var level = levelField.options[s].value;
-  console.log(level);
 }
+// event listener
 
 const levelButton = document.getElementById("level-button");
 console.log(levelButton);
@@ -69,6 +70,7 @@ console.log(theTetrominoes[0][0]);
 
 let random = Math.floor(Math.random() * theTetrominoes.length);
 let current = theTetrominoes[random][currentRotation];
+// draw function
 
 function draw() {
   current.forEach((index) => {
@@ -76,13 +78,14 @@ function draw() {
     squares[currentPosition + index].style.backgroundColor = colors[random];
   });
 }
-
+// undraw function
 function undraw() {
   current.forEach((index) => {
     squares[currentPosition + index].classList.remove("tetromino");
     squares[currentPosition + index].style.backgroundColor = "";
   });
 }
+// control function
 
 function control(e) {
   if (e.keyCode === 37) {
@@ -103,6 +106,7 @@ function moveDown() {
   draw();
   freeze();
 }
+// free function
 
 function freeze() {
   if (
@@ -123,7 +127,7 @@ function freeze() {
     gameOver();
   }
 }
-
+// moveLeft function
 function moveLeft() {
   undraw();
   const isAtLeftEdge = current.some(
@@ -139,7 +143,7 @@ function moveLeft() {
   }
   draw();
 }
-
+// moveRight function
 function moveRight() {
   undraw();
   const isAtRightEdge = current.some(
@@ -155,14 +159,15 @@ function moveRight() {
   }
   draw();
 }
-
+// isAtRight function
 function isAtRight() {
   return current.some((index) => (currentPosition + index + 1) % width === 0);
 }
-
+// isAtLef function
 function isAtLeft() {
   return current.some((index) => (currentPosition + index) % width === 0);
 }
+// checkRotatedPosition
 
 function checkRotatedPosition(P) {
   P = P || currentPosition;
@@ -178,7 +183,7 @@ function checkRotatedPosition(P) {
     }
   }
 }
-
+// rotate function
 function rotate() {
   undraw();
   currentRotation++;
@@ -233,7 +238,7 @@ startBtn.addEventListener("click", () => {
     displayShape();
   }
 });
-
+// addScore function
 function addScore() {
   for (let i = 0; i < 199; i += width) {
     const row = [
@@ -263,6 +268,7 @@ function addScore() {
     }
   }
 }
+// gameOver function
 function gameOver() {
   if (
     current.some((index) =>
