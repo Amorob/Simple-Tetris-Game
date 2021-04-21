@@ -17,7 +17,6 @@ function search() {
 // event listener
 
 const levelButton = document.getElementById("level-button");
-console.log(levelButton);
 levelButton.addEventListener("click", search);
 
 const lTetromino = [
@@ -65,8 +64,6 @@ const theTetrominoes = [
 
 let currentPosition = 4;
 let currentRotation = 0;
-
-console.log(theTetrominoes[0][0]);
 
 let random = Math.floor(Math.random() * theTetrominoes.length);
 let current = theTetrominoes[random][currentRotation];
